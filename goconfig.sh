@@ -5,16 +5,19 @@
 #
 
 echo "Enter path to go workspace (ex: $HOME/go) :"
-read GOPATH
+read PATHTOGO
 
 echo "Enter your github username - this will be used for projects in the go workspace (ex: saintjeremy) :"
 read USER
 
-mkdir $gopath
+mkdir $PATHTOGO
 mkdir -p $gopath/src/github.com/$USER
 
-export GOPATH=$GOPATH
+# set environment  variables from user input
+export GOPATH=$PATHTOGO
 export GOROOT=/usr/local/opt/go/libexec
+
+# append to $PATH
 export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:$GOROOT/bin
 
@@ -23,7 +26,7 @@ export PATH=$PATH:$GOROOT/bin
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 brew update
 
-# install relevatn packages from homebrew
+# install relevant packages from homebrew
 
 brew install git
 brew install go
